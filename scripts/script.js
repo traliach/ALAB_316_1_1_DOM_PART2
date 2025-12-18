@@ -57,3 +57,6 @@ const menuLinks = [
     aEl.textContent = link.text;
     topMenuEl.appendChild(aEl);
   }
+
+  // Cache top menu links
+  const topMenuLinks = topMenuEl.querySelectorAll('a');
