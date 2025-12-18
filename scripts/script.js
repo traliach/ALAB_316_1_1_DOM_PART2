@@ -61,9 +61,18 @@ const menuLinks = [
   // Cache top menu links
   const topMenuLinks = topMenuEl.querySelectorAll('a');
 
-  // Top menu click handling (event delegation) — log only for now
+  // Top menu click handling (event delegation)
   topMenuEl.addEventListener('click', (evt) => {
     evt.preventDefault();
     if (evt.target.tagName !== 'A') return;
     console.log(evt.target.textContent);
+
+    // Toggle active class (only one at a time)
+    if (evt.target.classList.contains('active')) {
+      evt.target.classList.remove('active');
+      return;
+    }
+
+    for (const link of topMenuLinks) link.classList.remove('active');
+    evt.target.classList.add('active');
   });
