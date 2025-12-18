@@ -18,6 +18,12 @@ var menuLinks = [
   topMenuEl.style.height = '100%';
   topMenuEl.style.backgroundColor = 'var(--top-menu-bg)';
   topMenuEl.classList.add('flex-around');
+
+  // Part 2b — Sub menu bar
+  const subMenuEl = document.querySelector('#sub-menu');
+  subMenuEl.style.height = '100%';
+  subMenuEl.style.backgroundColor = 'var(--sub-menu-bg)';
+  subMenuEl.classList.add('flex-around');
   
   // Part 3 — Menu buttons from data
   for (let link of menuLinks) {
