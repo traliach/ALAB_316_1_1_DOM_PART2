@@ -60,3 +60,10 @@ const menuLinks = [
 
   // Cache top menu links
   const topMenuLinks = topMenuEl.querySelectorAll('a');
+
+  // Top menu click handling (event delegation) — log only for now
+  topMenuEl.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    if (evt.target.tagName !== 'A') return;
+    console.log(evt.target.textContent);
+  });
