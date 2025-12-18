@@ -75,4 +75,12 @@ const menuLinks = [
 
     for (const link of topMenuLinks) link.classList.remove('active');
     evt.target.classList.add('active');
+
+    // Show/hide submenu (build links comes next step)
+    const linkObj = menuLinks.find((link) => link.text === evt.target.textContent);
+    if (evt.target.classList.contains('active') && linkObj?.subLinks) {
+      subMenuEl.style.top = '100%';
+    } else {
+      subMenuEl.style.top = '0';
+    }
   });
