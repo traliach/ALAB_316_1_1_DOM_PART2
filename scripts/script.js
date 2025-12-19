@@ -77,24 +77,23 @@ const menuLinks = [
     if (evt.target.tagName !== 'A') return;
     console.log(evt.target.textContent);
 
-    // Toggle active class (only one at a time)
-    if (evt.target.classList.contains('active')) {
-      evt.target.classList.remove('active');
-      return;
-    }
-
-    for (const link of topMenuLinks) link.classList.remove('active');
-    evt.target.classList.add('active');
-
-    // Show/hide submenu (build links comes next step)
     const linkObj = menuLinks.find((link) => link.text === evt.target.textContent);
 
     // Special case: ABOUT updates main and never shows submenu
     if (linkObj?.text === 'about') {
       subMenuEl.style.top = '0';
       mainEl.innerHTML = '<h1>About</h1>';
+    }
+
+    // Toggle active class (only one at a time)
+    if (evt.target.classList.contains('active')) {
+      evt.target.classList.remove('active');
+      subMenuEl.style.top = '0';
       return;
     }
+
+    for (const link of topMenuLinks) link.classList.remove('active');
+    evt.target.classList.add('active');
 
     if (evt.target.classList.contains('active') && linkObj?.subLinks) {
       subMenuEl.style.top = '100%';
