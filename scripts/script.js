@@ -88,6 +88,14 @@ const menuLinks = [
 
     // Show/hide submenu (build links comes next step)
     const linkObj = menuLinks.find((link) => link.text === evt.target.textContent);
+
+    // Special case: ABOUT updates main and never shows submenu
+    if (linkObj?.text === 'about') {
+      subMenuEl.style.top = '0';
+      mainEl.innerHTML = '<h1>About</h1>';
+      return;
+    }
+
     if (evt.target.classList.contains('active') && linkObj?.subLinks) {
       subMenuEl.style.top = '100%';
       buildSubmenu(linkObj.subLinks);
@@ -96,9 +104,13 @@ const menuLinks = [
     }
   });
 
-  // Submenu click handling (event delegation) — log only for now
+  // Submenu click handling (event delegation)
   subMenuEl.addEventListener('click', (evt) => {
     evt.preventDefault();
     if (evt.target.tagName !== 'A') return;
     console.log(evt.target.textContent);
+
+    subMenuEl.style.top = '0';
+    for (const link of topMenuLinks) link.classList.remove('active');
+    mainEl.innerHTML = `<h1>${evt.target.textContent}</h1>`;
   });
