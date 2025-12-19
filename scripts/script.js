@@ -61,6 +61,16 @@ const menuLinks = [
   // Cache top menu links
   const topMenuLinks = topMenuEl.querySelectorAll('a');
 
+  function buildSubmenu(subLinks) {
+    subMenuEl.innerHTML = '';
+    for (const link of subLinks) {
+      const aEl = document.createElement('a');
+      aEl.href = link.href;
+      aEl.textContent = link.text;
+      subMenuEl.appendChild(aEl);
+    }
+  }
+
   // Top menu click handling (event delegation)
   topMenuEl.addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -80,6 +90,7 @@ const menuLinks = [
     const linkObj = menuLinks.find((link) => link.text === evt.target.textContent);
     if (evt.target.classList.contains('active') && linkObj?.subLinks) {
       subMenuEl.style.top = '100%';
+      buildSubmenu(linkObj.subLinks);
     } else {
       subMenuEl.style.top = '0';
     }
