@@ -95,3 +95,10 @@ const menuLinks = [
       subMenuEl.style.top = '0';
     }
   });
+
+  // Submenu click handling (event delegation) — log only for now
+  subMenuEl.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    if (evt.target.tagName !== 'A') return;
+    console.log(evt.target.textContent);
+  });
